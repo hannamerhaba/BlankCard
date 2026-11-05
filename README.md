@@ -16,5 +16,6 @@ This is a Sprint Week prototype. Open `index.html` in a browser; there is nothin
 
 - All data is sample data. No real bank, card or payment network is connected.
 - The advisor is scripted. It does not call any AI service.
+- Reset the demo Settings.
 - Cross-issuer routing and the 24-hour change of a past payment are proposals. Visa Flexible Credential today routes among accounts at one issuer.
 - Bank, card and Visa logos and card images belong to their owners and are used only to illustrate the concept. This is not an official Visa product.
