@@ -2,7 +2,7 @@
 
 One Visa card with your own rules, plus an AI advisor that suggests but never decides.
 
-This is a hackathon prototype. Open `index.html` in a browser; there is nothing to install or build.
+This is a Sprint Week prototype. Open `index.html` in a browser; there is nothing to install or build.
 
 ## What it shows
 
