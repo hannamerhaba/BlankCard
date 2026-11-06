@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- BlankCard prototype · build 2026-11-06 · pointer dot -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -8,12 +9,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BlankCard">
 <meta property="og:title" content="BlankCard prototype">
-<meta property="og:description" content="One Visa card with your own rules. An AI advisor suggests, you decide.">
+<meta property="og:description" content="Make every tap count.">
 <meta property="og:url" content="https://hannamerhaba.github.io/BlankCard/">
 <meta property="og:image" content="https://hannamerhaba.github.io/BlankCard/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="BlankCard: one Visa card, your rules">
+<meta property="og:image:alt" content="BlankCard: make every tap count">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hannamerhaba.github.io/BlankCard/og-image.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -236,6 +237,11 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 @keyframes appulse{0%,100%{opacity:.4;transform:scale(.96)}50%{opacity:1;transform:scale(1.05)}}
 .apdone{display:flex;flex-direction:column;align-items:center;gap:8px;margin:12px 0 4px;font-size:18px;font-weight:600}
 .apdone.bad{color:var(--bad)}
+#cursorDot{position:fixed;left:0;top:0;width:30px;height:30px;pointer-events:none;z-index:2147483000;opacity:0;transition:opacity .15s;will-change:transform}
+#cursorDot i{display:block;width:100%;height:100%;border-radius:50%;background:rgba(255,196,0,.42);border:2px solid rgba(235,120,0,.95);box-shadow:0 0 0 1px rgba(255,255,255,.75);box-sizing:border-box;transition:transform .12s,background .12s}
+#cursorDot.down i{transform:scale(.72);background:rgba(235,120,0,.55)}
+.cripple{position:fixed;width:30px;height:30px;border-radius:50%;border:3px solid rgba(235,120,0,.9);box-sizing:border-box;pointer-events:none;z-index:2147483000;animation:crip .5s ease-out forwards}
+@keyframes crip{from{transform:scale(.6);opacity:.95}to{transform:scale(2.6);opacity:0}}
 .sdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:10px;flex:none}
 .tab{position:relative}
 .tab.alert::after{content:"";position:absolute;top:5px;left:calc(50% + 7px);width:9px;height:9px;border-radius:50%;background:var(--bad);border:2px solid var(--app)}
@@ -930,6 +936,35 @@ document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' '
   if(e.key==='Enter'&&e.target.id==='goalin'){saveGoal();return}
   if(e.key==='Enter'&&e.target.id==='chatin')send()});
 (function(){var p=plan();if(guard.mode==='auto'&&p.f.short>0)doTransfer(p,'Auto top-up')})();
+(function(){
+  var dot=document.createElement('div');dot.id='cursorDot';dot.setAttribute('aria-hidden','true');dot.innerHTML='<i></i>';document.body.appendChild(dot);
+  var on=true,seen=false,x=-100,y=-100,tx=-100,ty=-100;
+  function vis(v){dot.style.opacity=v&&on?'1':'0'}
+  var raf=0;
+  function draw(){raf=0;x+=(tx-x)*0.4;y+=(ty-y)*0.4;dot.style.transform='translate3d('+(x-15)+'px,'+(y-15)+'px,0)';if(Math.abs(tx-x)>0.2||Math.abs(ty-y)>0.2)raf=requestAnimationFrame(draw)}
+  function kick(){if(!raf)raf=requestAnimationFrame(draw)}
+  document.addEventListener('pointermove',function(e){
+    if(e.pointerType&&e.pointerType!=='mouse'){vis(false);return}
+    tx=e.clientX;ty=e.clientY;if(!seen){x=tx;y=ty;seen=true}vis(true);kick();
+  },{passive:true});
+  document.addEventListener('pointerdown',function(e){
+    if((e.pointerType&&e.pointerType!=='mouse')||!on)return;
+    dot.classList.add('down');
+    var r=document.createElement('div');r.className='cripple';r.style.left=(e.clientX-15)+'px';r.style.top=(e.clientY-15)+'px';document.body.appendChild(r);
+    setTimeout(function(){if(r.parentNode)r.parentNode.removeChild(r)},550);
+  });
+  document.addEventListener('pointerup',function(){dot.classList.remove('down')});
+  document.addEventListener('pointercancel',function(){dot.classList.remove('down')});
+  document.documentElement.addEventListener('mouseleave',function(){vis(false)});
+  document.documentElement.addEventListener('mouseenter',function(){if(seen)vis(true)});
+  document.addEventListener('keydown',function(e){
+    var t=e.target,tag=t&&t.tagName;
+    if(e.key!=='p'&&e.key!=='P')return;
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||(t&&t.isContentEditable))return;
+    on=!on;vis(seen);toast('Pointer dot '+(on?'on':'off'));
+  });
+})();
 render();
 })();
 </script>
