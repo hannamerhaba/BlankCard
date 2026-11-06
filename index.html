@@ -18,9 +18,9 @@
 <meta name="twitter:image" content="https://hannamerhaba.github.io/BlankCard/og-image.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#E9ECF6;--app:#FFFFFF;--sheet:#FFFFFF;--sheet-row:#F1F3FA;--surface:#F3F4FA;--text:#141A3C;--muted:#5A628C;--border:#DADEEE;--accent:#2B3BD9;--accent-ink:#FFFFFF;--accent-bg:#E4E8FF;--good:#14764A;--good-bg:#DDF2E7;--warn:#8F5600;--warn-bg:#FFEFD0;--bad:#B3261E;--bad-bg:#FBE2E0;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B0E24;--app:#12163A;--sheet:#222965;--sheet-row:#2E3680;--surface:#1B2050;--text:#EDEFFF;--muted:#9BA3D2;--border:#2B3170;--accent:#8793FF;--accent-ink:#0B0E24;--accent-bg:#252C70;--good:#62D69C;--good-bg:#12392A;--warn:#F5C26B;--warn-bg:#3B2C0D;--bad:#FF8F86;--bad-bg:#3E1714;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0B0E24;--app:#12163A;--sheet:#222965;--sheet-row:#2E3680;--surface:#1B2050;--text:#EDEFFF;--muted:#9BA3D2;--border:#2B3170;--accent:#8793FF;--accent-ink:#0B0E24;--accent-bg:#252C70;--good:#62D69C;--good-bg:#12392A;--warn:#F5C26B;--warn-bg:#3B2C0D;--bad:#FF8F86;--bad-bg:#3E1714;color-scheme:dark}
+:root{--bg:#E9ECF6;--app:#FFFFFF;--sheet:#FFFFFF;--sheet-row:#F1F3FA;--ap-bg:#F2F2F7;--ap-row:#FFFFFF;--ap-text:#000000;--ap-muted:#6C6C70;--ap-btn:#000000;--ap-btn-ink:#FFFFFF;--surface:#F3F4FA;--text:#141A3C;--muted:#5A628C;--border:#DADEEE;--accent:#2B3BD9;--accent-ink:#FFFFFF;--accent-bg:#E4E8FF;--good:#14764A;--good-bg:#DDF2E7;--warn:#8F5600;--warn-bg:#FFEFD0;--bad:#B3261E;--bad-bg:#FBE2E0;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B0E24;--app:#12163A;--sheet:#222965;--sheet-row:#2E3680;--ap-bg:#1C1C1E;--ap-row:#2C2C2E;--ap-text:#FFFFFF;--ap-muted:#98989D;--ap-btn:#FFFFFF;--ap-btn-ink:#000000;--surface:#1B2050;--text:#EDEFFF;--muted:#9BA3D2;--border:#2B3170;--accent:#8793FF;--accent-ink:#0B0E24;--accent-bg:#252C70;--good:#62D69C;--good-bg:#12392A;--warn:#F5C26B;--warn-bg:#3B2C0D;--bad:#FF8F86;--bad-bg:#3E1714;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B0E24;--app:#12163A;--sheet:#222965;--sheet-row:#2E3680;--ap-bg:#1C1C1E;--ap-row:#2C2C2E;--ap-text:#FFFFFF;--ap-muted:#98989D;--ap-btn:#FFFFFF;--ap-btn-ink:#000000;--surface:#1B2050;--text:#EDEFFF;--muted:#9BA3D2;--border:#2B3170;--accent:#8793FF;--accent-ink:#0B0E24;--accent-bg:#252C70;--good:#62D69C;--good-bg:#12392A;--warn:#F5C26B;--warn-bg:#3B2C0D;--bad:#FF8F86;--bad-bg:#3E1714;color-scheme:dark}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 html,body{height:100%}
 *,*::before,*::after{box-sizing:border-box}
@@ -212,6 +212,30 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .mvp{flex:1;display:flex;align-items:center;gap:8px;background:var(--app);border:1px solid var(--border);border-radius:12px;padding:8px 10px;min-width:0}
 .mvp b{font-size:13px}
 .mva{color:var(--muted);font-size:18px}
+.apay{position:absolute;inset:0;z-index:60;display:flex;align-items:flex-end}
+.apay[hidden]{display:none}
+.apscrim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.apsheet{position:relative;width:100%;background:var(--ap-bg);color:var(--ap-text);border-radius:22px 22px 0 0;padding:14px 16px 28px;box-shadow:0 -10px 40px rgba(0,0,0,.4);animation:apup .25s ease-out}
+@keyframes apup{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+.aph{display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:6px;min-height:30px}
+.apt{font-size:17px;font-weight:600}
+.apx{position:absolute;right:0;top:0;width:30px;height:30px;border-radius:50%;border:0;background:var(--ap-row);color:var(--ap-muted);font-size:20px;line-height:1;cursor:pointer}
+.aplab{font-size:12px;color:var(--ap-muted);text-transform:uppercase;letter-spacing:.06em;margin:14px 4px 6px}
+.aprow{display:flex;align-items:center;gap:12px;background:var(--ap-row);border-radius:14px;padding:12px 14px;font-size:15px;justify-content:space-between}
+.aprow .apm{flex:1;display:flex;flex-direction:column;line-height:1.3;min-width:0}
+.aprow .apm span{font-size:13px;color:var(--ap-muted)}
+.apnote{font-size:12px;color:var(--ap-muted);margin:8px 4px 0}
+.apcard{position:relative;width:58px;height:37px;border-radius:6px;background:linear-gradient(145deg,#fff,#dfe3f3);border:1px solid rgba(0,0,0,.14);flex:none;overflow:hidden}
+.apcard em{position:absolute;left:5px;top:4px;font:700 6px/1 Inter,sans-serif;color:#141A3C;font-style:normal}
+.apcard .apchip{position:absolute;left:6px;top:15px;width:10px;height:8px;border-radius:2px;background:#d9b26a}
+.apcard img{position:absolute;right:4px;bottom:4px;height:8px;width:auto}
+.apbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:20px;height:52px;border-radius:14px;border:0;background:var(--ap-btn);color:var(--ap-btn-ink);font:600 17px Inter,sans-serif;cursor:pointer}
+.apbtn.ghost{background:var(--ap-row);color:var(--ap-text);margin-top:10px}
+.apfid{display:flex;flex-direction:column;align-items:center;gap:8px;margin:22px 0 4px;font-size:14px}
+.apfid svg{animation:appulse 1s ease-in-out infinite}
+@keyframes appulse{0%,100%{opacity:.4;transform:scale(.96)}50%{opacity:1;transform:scale(1.05)}}
+.apdone{display:flex;flex-direction:column;align-items:center;gap:8px;margin:12px 0 4px;font-size:18px;font-weight:600}
+.apdone.bad{color:var(--bad)}
 .sdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:10px;flex:none}
 .tab{position:relative}
 .tab.alert::after{content:"";position:absolute;top:5px;left:calc(50% + 7px);width:9px;height:9px;border-radius:50%;background:var(--bad);border:2px solid var(--app)}
@@ -271,6 +295,7 @@ button.chip.bad{background:var(--bad-bg);color:var(--bad);border-color:var(--bad
     <button class="tab" data-act="tab" data-tab="advisor"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>Advisor</span></button>
   </nav>
   <div class="sheet" id="sheet" hidden><div class="scrim" data-act="sheetClose"></div><div class="sheetbody" id="sheetBody"></div></div>
+  <div class="apay" id="apay" hidden><div class="apscrim" data-act="apCancel"></div><div class="apsheet" id="apsheet"></div></div>
   <div class="toast" id="toast"></div>
 </div></div>
 <script>
@@ -491,7 +516,7 @@ function viewHome(){
   var e=totalEarned(),b=sp*0.01,d=e-b;
   var today=txns.filter(function(t){return t.h<24}).sort(function(x,y){return y.ts-x.ts||y.id-x.id});
   var earlier=txns.filter(function(t){return t.h>=24}).sort(function(x,y){return y.ts-x.ts||y.id-x.id});
-  var sim='<div class="panel"><b>Try a payment</b> <span class="s">(for demo)</span><div class="s">Tap to pay. Your rules choose the card.</div><div class="grid2"><select data-in="simm">'+MERCH.map(function(m,i){return '<option value="'+i+'"'+(i===simI?' selected':'')+'>'+m.m+' · '+m.cat+'</option>'}).join('')+'</select><input type="number" min="1" step="0.01" value="'+simA+'" data-in="sima" aria-label="Amount"></div><button class="btn" data-act="pay">Tap to pay</button>'+last+'</div>';
+  var sim='<div class="panel"><b>Try a payment</b> <span class="s">(for demo)</span><div class="s">Tap to pay. Your rules choose the card.</div><div class="grid2"><select data-in="simm">'+MERCH.map(function(m,i){return '<option value="'+i+'"'+(i===simI?' selected':'')+'>'+m.m+' · '+m.cat+'</option>'}).join('')+'</select><input type="number" min="1" step="0.01" value="'+simA+'" data-in="sima" aria-label="Amount"></div><button class="btn" data-act="pay">Pay with Apple Pay</button>'+last+'</div>';
   var gs=gstate(),f0=forecast(),nx=f0.rows[0];
   var due=gs[0]==='good'?'<div class="s" style="color:var(--good);font-weight:600">Outstanding covered</div><button class="chip ok iconchip" data-act="tab" data-tab="guard" aria-label="See Repayment Guard" title="See Repayment Guard"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></button>':'<div class="s" style="color:var(--bad);font-weight:600">Due '+nx.date+'</div><button class="chip bad iconchip" data-act="tab" data-tab="guard" aria-label="See Repayment Guard" title="See Repayment Guard"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></button>';
   var al=alerts.map(function(a,i){return '<div class="banner"><span>'+esc(a)+'</span><button data-act="dismiss" data-i="'+i+'" aria-label="Dismiss">×</button></div>'}).join('');
@@ -561,6 +586,52 @@ function render(){
   $('#view').innerHTML=f();
   if(tab==='cards')fixWallet();
   if(tab==='advisor'){var v=$('#view');v.scrollTop=v.scrollHeight}
+}
+
+var ap=null,apTimer=null;
+var FACEID='<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M9 10v1.5M15 10v1.5M12 10v3.5h-1M9 16c1.8 1.4 4.2 1.4 6 0"/></svg>';
+function apHead(){return '<div class="aph"><span class="apt">Apple Pay</span><button class="apx" data-act="apCancel" aria-label="Cancel">×</button></div>'}
+function apBlank(){return '<span class="apcard" aria-hidden="true"><em>BlankCard</em><i class="apchip"></i><img src="'+VISA+'" alt=""></span>'}
+function renderApay(){
+  var el=$('#apsheet'),s=ap.step,html='';
+  if(s==='pay'){
+    html=apHead()
+     +'<div class="aplab">Card</div><div class="aprow">'+apBlank()+'<span class="apm"><b>BlankCard</b><span>Visa •••• 0000</span></span></div>'
+     +'<div class="apnote">BlankCard picks the best card for this payment.</div>'
+     +'<div class="aplab">Pay</div><div class="aprow"><b>'+esc(ap.m.m)+'</b><b>'+fmt(ap.amt,2)+'</b></div>'
+     +'<button class="apbtn" data-act="apAuth">'+FACEID+'Pay with Face ID</button>';
+  }else if(s==='auth'){
+    html=apHead()+'<div class="apfid">'+FACEID.replace('width="24" height="24"','width="44" height="44"')+'<span>Face ID</span></div>';
+  }else if(s==='done'){
+    var t=ap.t,c=byId(t.card);
+    html=apHead()+'<div class="apdone"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#14764A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l3 3 5-6"/></svg><span>Done</span></div>'
+     +'<div class="aplab">BlankCard chose</div><div class="aprow">'+logo(c,1)+'<span class="apm"><b>'+c.name+'</b><span>'+esc(t.m)+' · '+fmt(t.amt,2)+'</span></span><b>'+fmt(earned(t),2)+' back</b></div>'
+     +'<button class="apbtn ghost" data-act="apClose">Close</button>';
+  }else{
+    html=apHead()+'<div class="apdone bad"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Declined</span></div>'
+     +'<div class="apnote" style="text-align:center">'+esc(ap.reason)+'. Nothing was charged.</div>'
+     +'<button class="apbtn" data-act="apOverride">Approve once anyway</button><button class="apbtn ghost" data-act="apCancel">Cancel</button>';
+  }
+  el.innerHTML=html;$('#apay').hidden=false;
+}
+function openApay(){
+  var amt=Number(simA);
+  if(!(amt>0)){toast('Enter an amount');return}
+  ap={step:'pay',m:MERCH[simI],amt:amt};renderApay();
+}
+function closeApay(){
+  clearTimeout(apTimer);ap=null;$('#apay').hidden=true;last='';render();
+}
+function apFinish(over){
+  var n0=txns.length;pay(over);
+  if(txns.length>n0){ap.t=txns[txns.length-1];ap.step='done'}
+  renderApay();
+}
+function apConfirm(){
+  if(!ap||ap.step!=='auth')return;
+  var r=route(ap.m.cat,ap.amt);
+  if(!r.card){ap.step='declined';ap.reason=r.reason;renderApay();return}
+  apFinish(false);
 }
 
 function pay(over){
@@ -754,7 +825,11 @@ document.addEventListener('click',function(e){
   var a=el.dataset.act,id=el.dataset.id;
   switch(a){
     case 'tab':if(el.dataset.tab==='settings'&&tab!=='settings')prevTab=tab;tab=el.dataset.tab;closeSheet();render();if(tab==='advisor'&&!chat.length){say('Hi, I’m your BlankCard advisor. I suggest, you decide.');render()}break;
-    case 'pay':pay(false);break;
+    case 'pay':openApay();break;
+    case 'apCancel':if(ap)closeApay();break;
+    case 'apClose':closeApay();break;
+    case 'apAuth':if(ap&&ap.step==='pay'){ap.step='auth';renderApay();clearTimeout(apTimer);apTimer=setTimeout(apConfirm,1000)}break;
+    case 'apOverride':if(ap){apFinish(true)}break;
     case 'override':pay(true);break;
     case 'dismiss':alerts.splice(+el.dataset.i,1);render();break;
     case 'openTx':openSheet(txSheet(+id));break;
